@@ -4,10 +4,7 @@ import androidx.paging.PagingData
 import com.neugelb.domain.entity.Movie
 import com.neugelb.domain.repository.MoviesRepository
 import com.neugelb.domain.usecase.GetMoviesUseCase
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
@@ -15,15 +12,13 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class GetMoviesUseCaseTest {
 
-    @Mock
-    lateinit var repository: MoviesRepository
+    private val repository = mock<MoviesRepository>()
     private lateinit var useCase: GetMoviesUseCase
 
     @Before

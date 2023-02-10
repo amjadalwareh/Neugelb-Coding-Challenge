@@ -10,4 +10,5 @@ object Versions {
     const val appcompat = "1.6.0"
     const val material = "1.7.0"
     const val mockito = "3.9.0"
+    const val navigation = "2.5.3"
 }

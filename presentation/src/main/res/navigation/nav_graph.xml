@@ -8,10 +8,19 @@
     <fragment
         android:id="@+id/movies"
         android:name="com.neugelb.presentation.movies.MoviesFragment"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/movies_to_movie_details"
+            app:destination="@+id/movie_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/movie_details"
-        android:name="com.neugelb.presentation.movie_details.MovieDetailsFragment" />
+        android:name="com.neugelb.presentation.movie_details.MovieDetailsFragment">
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 </navigation>

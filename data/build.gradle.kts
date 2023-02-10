@@ -41,8 +41,7 @@ dependencies {
 
     implementation(Dependencies.hilt_android)
     kapt(Dependencies.hilt_compiler)
-    kaptTest(Dependencies.hilt_compiler)
-    androidTestImplementation(Dependencies.hilt_test)
+
     testImplementation(Dependencies.mockito)
     testImplementation(Dependencies.mockito_inline)
     testImplementation(Dependencies.mockito_core)
@@ -53,4 +52,8 @@ dependencies {
     testImplementation(Dependencies.mock_web)
 
     implementation(Dependencies.paging)
+    testImplementation(Dependencies.paging_test)
+
+    testImplementation(Dependencies.coroutines_test)
+    testImplementation(Dependencies.junit)
 }

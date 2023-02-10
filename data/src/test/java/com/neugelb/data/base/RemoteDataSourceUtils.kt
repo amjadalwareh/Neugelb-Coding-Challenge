@@ -1,4 +1,4 @@
-package com.neugelb.data
+package com.neugelb.data.base
 
 import com.neugelb.data.remote.api.MoviesApi
 import okhttp3.OkHttpClient
@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.nio.charset.StandardCharsets
 
-fun MockWebServer.enqueueResponse(fileName: String, code: Int) {
+internal fun MockWebServer.enqueueResponse(fileName: String, code: Int) {
     val inputStream = javaClass.classLoader?.getResourceAsStream("api-response/$fileName")
 
     val source = inputStream?.let { inputStream.source().buffer() }
@@ -22,13 +22,13 @@ fun MockWebServer.enqueueResponse(fileName: String, code: Int) {
     }
 }
 
-fun initMockWebserver(): MockWebServer = MockWebServer()
+internal fun initMockWebserver(): MockWebServer = MockWebServer()
 
-fun initMockOkHttpClient(): OkHttpClient = OkHttpClient()
+internal fun initMockOkHttpClient(): OkHttpClient = OkHttpClient()
     .newBuilder()
     .build()
 
-fun initMockRetrofit(
+internal fun initMockRetrofit(
     mockWebServer: MockWebServer,
     okHttpClient: OkHttpClient
 ): Retrofit = Retrofit.Builder()
@@ -37,4 +37,4 @@ fun initMockRetrofit(
     .addConverterFactory(GsonConverterFactory.create())
     .build()
 
-fun initGitHubApi(retrofit: Retrofit): MoviesApi = retrofit.create(MoviesApi::class.java)
+internal fun initMoviesApi(retrofit: Retrofit): MoviesApi = retrofit.create(MoviesApi::class.java)

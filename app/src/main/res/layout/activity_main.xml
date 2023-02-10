@@ -7,26 +7,12 @@
     android:background="#032541"
     tools:context=".MainActivity">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/app_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-light"
-        android:padding="16dp"
-        android:text="@string/get_started"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_title"
-        app:navGraph="@navigation/nav_graph" />
+        app:navGraph="@navigation/graph_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

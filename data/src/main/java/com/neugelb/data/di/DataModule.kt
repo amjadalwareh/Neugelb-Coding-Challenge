@@ -17,12 +17,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+internal object DataModule {
 
     @Provides
     @Singleton
@@ -30,9 +29,6 @@ object DataModule {
         .newBuilder()
         .addInterceptor(TokenInterceptor())
         .addInterceptor(getLoggingInterceptor())
-        .connectTimeout(5000, TimeUnit.SECONDS)
-        .readTimeout(5000, TimeUnit.SECONDS)
-        .writeTimeout(5000, TimeUnit.SECONDS)
         .build()
 
     private fun getLoggingInterceptor() = HttpLoggingInterceptor().apply {
@@ -58,11 +54,10 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun providesGitHubApi(retrofit: Retrofit): MoviesApi = retrofit.create(MoviesApi::class.java)
+    fun providesMoviesApi(retrofit: Retrofit): MoviesApi = retrofit.create(MoviesApi::class.java)
 
     @Provides
     @Singleton
     fun providesRepository(api: MoviesApi): MoviesRepository = MoviesRepositoryImpl(api)
-
 
 }

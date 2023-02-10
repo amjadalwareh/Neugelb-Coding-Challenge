@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">presentation</string>
-    <string name="search">Search…</string>
     <string name="get_started">Welcome, Millions of movies to discover. Explore now.</string>
+    <string name="error">An error occurred, Please try again</string>
 </resources>

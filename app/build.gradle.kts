@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -16,7 +17,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "com.neugelb.challenge.NeugelbTestApplication"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -28,7 +28,10 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -60,7 +63,6 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.5.5")
     kapt(Dependencies.hilt_compiler)
     kaptTest(Dependencies.hilt_compiler)
-    implementation("androidx.test:runner:1.5.2")
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.test)
 }

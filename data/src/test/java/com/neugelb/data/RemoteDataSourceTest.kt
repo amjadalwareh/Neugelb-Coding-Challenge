@@ -1,5 +1,10 @@
 package com.neugelb.data
 
+import com.neugelb.data.base.*
+import com.neugelb.data.base.initMockOkHttpClient
+import com.neugelb.data.base.initMockRetrofit
+import com.neugelb.data.base.initMockWebserver
+import com.neugelb.data.base.initMoviesApi
 import com.neugelb.data.remote.api.MoviesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -30,7 +35,7 @@ class RemoteDataSourceTest {
 
         retrofit = initMockRetrofit(mockWebServer, okHttpClient)
 
-        api = initGitHubApi(retrofit)
+        api = initMoviesApi(retrofit)
     }
 
     @After
@@ -49,12 +54,32 @@ class RemoteDataSourceTest {
     }
 
     @Test
+    fun `should fetch Movie details correctly given 200 response`() {
+        mockWebServer.enqueueResponse("movie-response-200.json", 200)
+
+        runBlocking {
+            val actual = api.fetchMovieDetails(1)
+            assertNotNull(actual)
+        }
+    }
+
+    @Test
     fun `should fetch Movies correctly given correct data`() {
         mockWebServer.enqueueResponse("movies-response-200.json", 200)
 
         runBlocking {
             val actual = api.fetchMovies(1)
             assertEquals(actual.results[0].originalTitle, "Black Panther: Wakanda Forever")
+        }
+    }
+
+    @Test
+    fun `should fetch Movie details correctly given correct data`() {
+        mockWebServer.enqueueResponse("movie-response-200.json", 200)
+
+        runBlocking {
+            val actual = api.fetchMovieDetails(1)
+            assertEquals(actual.originalTitle, "Black Panther: Wakanda Forever")
         }
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.neugelb.domain.entity.Movie
 import com.neugelb.presentation.databinding.FragmentMoviesBinding
@@ -55,7 +56,10 @@ class MoviesFragment : Fragment() {
     }
 
     private fun onClickMovie(movie: Movie?) {
-        //findNavController().navigate()
+        movie?.id?.let { safeMovieId ->
+            val dir = MoviesFragmentDirections.moviesToMovieDetails(safeMovieId)
+            findNavController().navigate(dir)
+        }
     }
 
 }

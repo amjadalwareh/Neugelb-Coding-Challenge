@@ -7,7 +7,7 @@ import com.neugelb.data.remote.api.MoviesApi
 
 private const val STARTING_PAGE_INDEX = 1
 
-class MoviesRemotePagingSource constructor(
+internal class MoviesRemotePagingSource constructor(
     private val api: MoviesApi
 ) : PagingSource<Int, MovieResponse>() {
 
@@ -20,7 +20,8 @@ class MoviesRemotePagingSource constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse> {
         return try {
-            val pageNumber = if (params is LoadParams.Refresh) STARTING_PAGE_INDEX else params.key ?: STARTING_PAGE_INDEX
+            val pageNumber = if (params is LoadParams.Refresh) STARTING_PAGE_INDEX else params.key
+                ?: STARTING_PAGE_INDEX
 
             val response = api.fetchMovies(pageNumber)
 

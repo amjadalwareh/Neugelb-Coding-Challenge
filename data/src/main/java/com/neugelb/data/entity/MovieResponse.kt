@@ -3,14 +3,14 @@ package com.neugelb.data.entity
 import com.google.gson.annotations.SerializedName
 import com.neugelb.domain.entity.Movie
 
-data class MovieListResponse(
+internal data class MovieListResponse(
     @SerializedName("page") val page: Int,
     @SerializedName("total_pages") val totalPages: Int,
     @SerializedName("total_results") val totalResults: Int,
     @SerializedName("results") val results: List<MovieResponse>
 )
 
-data class MovieResponse(
+internal data class MovieResponse(
     @SerializedName("adult") val adult: Boolean?,
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("genre_ids") val genreIds: List<Int>?,
@@ -27,7 +27,7 @@ data class MovieResponse(
     @SerializedName("vote_count") val voteCount: Int?
 )
 
-fun MovieResponse.toDomain() = Movie(
+internal fun MovieResponse.toDomain() = Movie(
     id = id,
     originalTitle = originalTitle,
     overview = overview,
