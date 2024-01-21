@@ -65,7 +65,7 @@ dependencies {
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.test)
 
-    implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
     implementation(platform("androidx.compose:compose-bom:2022.12.00"))
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.foundation:foundation")
