@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.neugelb.challenge"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.neugelb.challenge"
@@ -26,8 +26,8 @@ android {
         getByName("debug") {
         }
         getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
